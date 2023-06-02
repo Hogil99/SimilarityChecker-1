@@ -5,7 +5,7 @@ using namespace std;
 class SimilarityChecker
 {
 public:
-	void isIllegalArgumentFound(string str1, string str2)
+	void isIllegalArgumentFound(const string str1,const string str2)
 	{
 		if (str1 == "" || str2 == "")
 		{
@@ -13,8 +13,13 @@ public:
 		}
 	}
 
-	int checkLentghPoint(string str1, string str2)
+	int checkLentghPoint(const string str1,const string str2)
 	{
 		isIllegalArgumentFound(str1, str2);
+
+		if (str1.length() == str2.length())
+			return 60;
+
+
 	}
 };
