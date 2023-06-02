@@ -26,11 +26,6 @@ public:
 		}
 	}
 
-	void isIllegalAlphabetFound(const string str1, const string str2)
-	{
-		isIllegalAlphabet(str1);
-	}
-
 	void getLongShortLenghs(const string str1, const string str2)
 	{
 		if (str1.length() > str2.length())
@@ -112,7 +107,7 @@ public:
 	{
 		isEmptyStr(str1);
 		isEmptyStr(str2);
-		;
+
 		isIllegalAlphabet(str1);
 		isIllegalAlphabet(str2);
 
