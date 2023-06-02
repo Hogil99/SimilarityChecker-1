@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "../Project1/SimilarityChecker.cpp"
 
-TEST(TestCaseName, TestName) {
-  EXPECT_EQ(1, 1);
-  EXPECT_TRUE(true);
+TEST(LengthCheckTest, length1) {
+	SimilarityChecker similarityChecker;
+	EXPECT_THROW(similarityChecker.checkLentghPoint("", ""), std::invalid_argument);
 }
