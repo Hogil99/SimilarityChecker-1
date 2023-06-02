@@ -7,10 +7,19 @@ public:
 	SimilarityChecker similarityChecker;
 }; 
 
-TEST_F(SimilarityCheckerFixture, length1) {
+TEST_F(SimilarityCheckerFixture, illegalArgument) {
 	EXPECT_THROW(similarityChecker.checkLentghPoint("", ""), std::invalid_argument);
 }
 
-TEST_F(SimilarityCheckerFixture, length2) {
+TEST_F(SimilarityCheckerFixture, length1) {
 	EXPECT_EQ(60, similarityChecker.checkLentghPoint("ABC", "ABC"));
+}
+
+TEST_F(SimilarityCheckerFixture, length2) {
+	EXPECT_EQ(0, similarityChecker.checkLentghPoint("A", "BB"));
+	EXPECT_EQ(40, similarityChecker.checkLentghPoint("ABBB", "BBB"));
+	EXPECT_EQ(40, similarityChecker.checkLentghPoint("BBB", "ABBB"));
+
+	EXPECT_EQ(20, similarityChecker.checkLentghPoint("ABBBB", "BBB"));
+	EXPECT_EQ(20, similarityChecker.checkLentghPoint("BBB", "ABBBB"));
 }

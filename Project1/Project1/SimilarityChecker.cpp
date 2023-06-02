@@ -2,6 +2,8 @@
 
 using namespace std;
 
+const int LENGTH_MAX_RESULT = 60;
+
 class SimilarityChecker
 {
 public:
@@ -13,13 +15,43 @@ public:
 		}
 	}
 
+	void getLongShortLenghs(const string str1, const string str2)
+	{
+		if (str1.length() > str2.length())
+		{
+			longLength = str1.length();
+			shortLength = str2.length();
+		} else
+		{
+			longLength = str2.length();
+			shortLength = str1.length();
+		}
+	}
+
+	bool isLengthSame(const string str1, const string str2)
+	{
+		return str1.length() == str2.length();
+	}
+
+	int getScore()
+	{
+		int gap = longLength - shortLength;
+		return (1 - (double)gap / (double)shortLength) * LENGTH_MAX_RESULT;
+	}
+
 	int checkLentghPoint(const string str1,const string str2)
 	{
 		isIllegalArgumentFound(str1, str2);
 
-		if (str1.length() == str2.length())
-			return 60;
+		if (isLengthSame(str1, str2))
+			return LENGTH_MAX_RESULT;
 
+		getLongShortLenghs(str1, str2);
 
+		return getScore();
 	}
+
+private:
+	int longLength;
+	int shortLength;
 };
