@@ -68,6 +68,46 @@ public:
 		return getScore();
 	}
 
+	unordered_set<char> getTotalAlphaList(const string& str1, const string& str2)
+	{
+		unordered_set<char> totalAlphaList;
+		for (char c : str1)
+		{
+			if (!totalAlphaList.count(c))
+				totalAlphaList.insert(c);
+		}
+
+		for (char c : str2)
+		{
+			if (!totalAlphaList.count(c))
+				totalAlphaList.insert(c);
+		}
+		return totalAlphaList;
+	}
+
+	unordered_set<char> getAlphaList(const string& str)
+	{
+		unordered_set<char> totalAlphaList;
+		for (char c : str)
+		{
+			if (!totalAlphaList.count(c))
+				totalAlphaList.insert(c);
+		}
+		return totalAlphaList;
+	}
+
+
+	int getAlphaScore()
+	{
+		int sameCnt = 0;
+		for (char c : totalAlphaList)
+		{
+			if (aAlphaList.count(c) && bAlphaList.count(c))
+				sameCnt++;
+		}
+		return (sameCnt * 40) / totalAlphaList.size();
+	}
+
 	int checkAlpha(const string& str1, const string& str2)
 	{
 		isEmptyStr(str1);
@@ -78,37 +118,16 @@ public:
 
 		if (str1 == str2) return 40;
 
-		for (char c : str1)
-		{
-			if (!aAlphaSet.count(c))
-				aAlphaSet.insert(c);
-			if (!totalAlphaList.count(c))
-				totalAlphaList.insert(c);
-		}
+		aAlphaList = getAlphaList(str1);
+		bAlphaList = getAlphaList(str2);
 
-		for (char c : str2)
-		{
-			if (!bAlphaList.count(c))
-				bAlphaList.insert(c);
-			if (!totalAlphaList.count(c))
-				totalAlphaList.insert(c);
-		}
+		totalAlphaList = getTotalAlphaList(str1, str2);
 
-		int result = 0;
-		int sameCnt = 0;
-		int totalCnt = totalAlphaList.size();
-
-		for (char c : totalAlphaList)
-		{
-			if (aAlphaSet.count(c) && bAlphaList.count(c))
-				sameCnt++;
-		}
-
-		result = (sameCnt * 40) / totalCnt;
+		return getAlphaScore();
 	}
 
 private:
-	unordered_set<char> aAlphaSet;
+	unordered_set<char> aAlphaList;
 	unordered_set<char> bAlphaList;
 	unordered_set<char> totalAlphaList;
 	int longLength;

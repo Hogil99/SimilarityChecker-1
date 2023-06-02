@@ -45,5 +45,7 @@ TEST_F(SimilarityCheckerFixture, alphaSame)
 TEST_F(SimilarityCheckerFixture, alphaPartial)
 {
 	EXPECT_EQ(20, similarityChecker.checkAlpha("AB", "AA"));
+	EXPECT_EQ(26, similarityChecker.checkAlpha("ABC", "AACCC"));
+
 }
 
