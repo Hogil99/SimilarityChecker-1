@@ -21,11 +21,11 @@ public:
 		{
 			longLength = str1.length();
 			shortLength = str2.length();
-		} else
-		{
-			longLength = str2.length();
-			shortLength = str1.length();
-		}
+			return;
+		} 
+
+		longLength = str2.length();
+		shortLength = str1.length();
 	}
 
 	bool isLengthSame(const string str1, const string str2)
@@ -36,7 +36,7 @@ public:
 	int getScore()
 	{
 		int gap = longLength - shortLength;
-		return (1 - (double)gap / (double)shortLength) * LENGTH_MAX_RESULT;
+		return (shortLength - gap) * LENGTH_MAX_RESULT / shortLength;
 	}
 
 	int checkLentghPoint(const string str1,const string str2)
