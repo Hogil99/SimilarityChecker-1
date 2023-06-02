@@ -22,4 +22,6 @@ TEST_F(SimilarityCheckerFixture, length2) {
 
 	EXPECT_EQ(20, similarityChecker.checkLentghPoint("ABBBB", "BBB"));
 	EXPECT_EQ(20, similarityChecker.checkLentghPoint("BBB", "ABBBB"));
+
+	EXPECT_EQ(55, similarityChecker.checkLentghPoint("AAAAABBBBBAAAAABBBBBAAAAABBBBBAAAAABBBBBAAAAABBBBBAAAAABBBBBAAAAA", "AAAAABBBBBAAAAABBBBBAAAAABBBBBAAAAABBBBBAAAAABBBBBAAAAABBBBB"));
 }
