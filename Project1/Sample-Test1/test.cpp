@@ -25,3 +25,25 @@ TEST_F(SimilarityCheckerFixture, length2) {
 
 	EXPECT_EQ(55, similarityChecker.checkLentghPoint("AAAAABBBBBAAAAABBBBBAAAAABBBBBAAAAABBBBBAAAAABBBBBAAAAABBBBBAAAAA", "AAAAABBBBBAAAAABBBBBAAAAABBBBBAAAAABBBBBAAAAABBBBBAAAAABBBBB"));
 }
+
+
+TEST_F(SimilarityCheckerFixture, alphaIllegal)
+{
+	EXPECT_THROW(similarityChecker.checkAlpha("", ""), std::invalid_argument);
+	EXPECT_THROW(similarityChecker.checkAlpha("ABC", "ABc"), std::invalid_argument);
+}
+
+
+
+TEST_F(SimilarityCheckerFixture, alphaSame)
+{
+	EXPECT_EQ(40, similarityChecker.checkAlpha("AA", "AA"));
+	EXPECT_EQ(40, similarityChecker.checkAlpha("BBB", "BBB"));
+	EXPECT_EQ(40, similarityChecker.checkAlpha("CCCC", "CCCC"));
+}
+
+TEST_F(SimilarityCheckerFixture, alphaPartial)
+{
+	EXPECT_EQ(20, similarityChecker.checkAlpha("AB", "AA"));
+}
+
